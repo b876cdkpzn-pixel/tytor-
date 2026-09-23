@@ -3,1000 +3,1179 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#07070c">
-<title>TYTOR Studio</title>
+
+<title>MARSIANIN STUDIO — CRMP</title>
+
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-html{
-    scroll-behavior:smooth;
-}
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#050509;
-    color:#fff;
-    overflow-x:hidden;
-}
-/* =========================
-   BACKGROUND
-========================= */
-.background{
-    position:fixed;
-    inset:0;
-    overflow:hidden;
-    pointer-events:none;
-    z-index:-5;
-}
-.grid{
-    position:absolute;
-    inset:-100%;
-    background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-    background-size:60px 60px;
-    transform:perspective(500px) rotateX(60deg);
-    animation:gridMove 18s linear infinite;
-}
-@keyframes gridMove{
-    from{
-        transform:perspective(500px) rotateX(60deg) translateY(0);
-    }
-    to{
-        transform:perspective(500px) rotateX(60deg) translateY(60px);
-    }
-}
-.glow{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(120px);
-    opacity:.22;
-}
-.glow.one{
-    width:500px;
-    height:500px;
-    background:#713cff;
-    top:-250px;
-    left:-200px;
-    animation:glowMove 9s ease-in-out infinite alternate;
-}
-.glow.two{
-    width:450px;
-    height:450px;
-    background:#1769ff;
-    right:-220px;
-    top:35%;
-    animation:glowMove 11s ease-in-out infinite alternate-reverse;
-}
-.glow.three{
-    width:400px;
-    height:400px;
-    background:#b026ff;
-    bottom:-250px;
-    left:35%;
-}
-@keyframes glowMove{
-    from{transform:translate(0,0)}
-    to{transform:translate(100px,70px)}
-}
-/* PARTICLES */
-#particles{
-    position:fixed;
-    inset:0;
-    z-index:-4;
-    pointer-events:none;
-}
-/* CURSOR GLOW */
-.cursor{
-    position:fixed;
-    width:220px;
-    height:220px;
-    border-radius:50%;
-    pointer-events:none;
-    background:radial-gradient(
-        circle,
-        rgba(139,92,246,.14),
-        transparent 65%
-    );
-    transform:translate(-50%,-50%);
-    z-index:-1;
-}
-/* =========================
-   HEADER
-========================= */
-header{
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:100;
-    background:rgba(5,5,9,.62);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-    border-bottom:1px solid rgba(255,255,255,.07);
-}
-nav{
-    max-width:1150px;
-    height:72px;
-    margin:auto;
-    padding:0 20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-.logo{
-    font-size:20px;
-    font-weight:900;
-    letter-spacing:-1px;
-}
-.logo span{
-    background:linear-gradient(90deg,#9b6cff,#5e8cff);
-    -webkit-background-clip:text;
-    color:transparent;
-}
-.nav-links{
-    display:flex;
-    gap:28px;
-}
-.nav-links a{
-    color:#8f8f9d;
-    text-decoration:none;
-    font-size:14px;
-    transition:.25s;
-}
-.nav-links a:hover{
-    color:#fff;
-}
-.telegram{
-    text-decoration:none;
-    color:#fff;
-    padding:10px 16px;
-    border-radius:12px;
-    border:1px solid rgba(139,92,246,.4);
-    background:rgba(139,92,246,.1);
-    transition:.25s;
-}
-.telegram:hover{
-    transform:translateY(-3px);
-    box-shadow:0 0 30px rgba(139,92,246,.25);
-}
-/* =========================
-   HERO
-========================= */
-.hero{
-    max-width:1150px;
-    min-height:100vh;
-    margin:auto;
-    padding:150px 20px 80px;
-    display:grid;
-    grid-template-columns:1.1fr .9fr;
-    align-items:center;
-    gap:60px;
-}
-.badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:8px 13px;
-    border-radius:100px;
-    color:#bca8ff;
-    font-size:12px;
-    font-weight:bold;
-    background:rgba(139,92,246,.08);
-    border:1px solid rgba(139,92,246,.25);
-    animation:badgePulse 3s ease-in-out infinite;
-}
-.badge::before{
-    content:"";
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:#9d72ff;
-    box-shadow:0 0 15px #9d72ff;
-}
-@keyframes badgePulse{
-    0%,100%{box-shadow:0 0 0 rgba(139,92,246,0)}
-    50%{box-shadow:0 0 30px rgba(139,92,246,.15)}
-}
-h1{
-    margin-top:24px;
-    font-size:clamp(50px,7vw,88px);
-    line-height:.92;
-    letter-spacing:-6px;
-}
-.gradient{
-    background:linear-gradient(
-        90deg,
-        #fff,
-        #a676ff,
-        #5790ff,
-        #fff
-    );
-    background-size:250% auto;
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:gradientMove 5s linear infinite;
-}
-@keyframes gradientMove{
-    to{
-        background-position:250% center;
-    }
-}
-.hero-text{
-    max-width:590px;
-    margin-top:27px;
-    color:#92929f;
-    font-size:18px;
-    line-height:1.65;
-}
-.buttons{
-    display:flex;
-    gap:12px;
-    margin-top:30px;
-    flex-wrap:wrap;
-}
-.button{
-    padding:14px 20px;
-    border-radius:13px;
-    text-decoration:none;
-    color:#fff;
-    font-weight:bold;
-    border:1px solid rgba(255,255,255,.1);
-    transition:.3s;
-    position:relative;
-    overflow:hidden;
-}
-.button::before{
-    content:"";
-    position:absolute;
-    width:0;
-    height:100%;
-    left:50%;
-    top:0;
-    background:rgba(255,255,255,.12);
-    transform:translateX(-50%);
-    transition:.35s;
-}
-.button:hover::before{
-    width:100%;
-}
-.button:hover{
-    transform:translateY(-4px);
-}
-.primary{
-    background:linear-gradient(135deg,#8b5cf6,#557cff);
-    box-shadow:
-        0 15px 50px rgba(105,75,255,.22);
-}
-.secondary{
-    background:rgba(255,255,255,.035);
-}
-/* =========================
-   3D PREVIEW
-========================= */
-.visual{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    perspective:1000px;
-}
-.preview{
-    width:310px;
-    padding:28px;
-    border-radius:26px;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(31,29,47,.92),
-            rgba(8,8,13,.95)
-        );
-    border:1px solid rgba(255,255,255,.11);
-    box-shadow:
-        0 40px 100px rgba(0,0,0,.6),
-        0 0 80px rgba(125,78,255,.15);
-    transform:rotateY(-12deg) rotateX(5deg);
-    animation:previewFloat 5s ease-in-out infinite;
-    transition:.4s;
-}
-.preview:hover{
-    transform:rotateY(0) rotateX(0) scale(1.04);
-}
-@keyframes previewFloat{
-    0%,100%{
-        transform:rotateY(-12deg) rotateX(5deg) translateY(0);
-    }
-    50%{
-        transform:rotateY(-7deg) rotateX(3deg) translateY(-14px);
-    }
-}
-.preview-label{
-    color:#888896;
-    font-size:12px;
-}
-.preview h2{
-    margin-top:10px;
-    font-size:29px;
-}
-.line{
-    height:1px;
-    margin:22px 0;
-    background:rgba(255,255,255,.08);
-}
-.preview-row{
-    display:flex;
-    justify-content:space-between;
-    padding:13px 0;
-    color:#92929f;
-    font-size:13px;
-}
-.preview-row strong{
-    color:#fff;
-}
-/* =========================
-   SECTIONS
-========================= */
-section{
-    max-width:1150px;
-    margin:auto;
-    padding:100px 20px;
-}
-.label{
-    color:#9870ff;
-    font-size:12px;
-    font-weight:bold;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    margin-bottom:10px;
-}
-.title{
-    font-size:44px;
-    letter-spacing:-2px;
-}
-.description{
-    margin-top:10px;
-    color:#858592;
-    line-height:1.6;
-}
-/* =========================
-   PRODUCTS
-========================= */
-.products{
-    display:grid;
-    grid-template-columns:
-        repeat(3,1fr);
-    gap:18px;
-    margin-top:40px;
-}
-.product{
-    position:relative;
-    padding:27px;
-    border-radius:24px;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.055),
-            rgba(255,255,255,.015)
-        );
-    border:1px solid rgba(255,255,255,.08);
-    overflow:hidden;
-    transform-style:preserve-3d;
-    transition:
-        transform .15s ease,
-        border-color .3s,
-        box-shadow .3s;
-}
-.product::before{
-    content:"";
-    position:absolute;
-    width:180px;
-    height:180px;
-    left:-70px;
-    top:-70px;
-    border-radius:50%;
-    background:var(--color);
-    filter:blur(75px);
-    opacity:.15;
-    pointer-events:none;
-}
-.product:hover{
-    border-color:rgba(145,100,255,.45);
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.4),
-        0 0 40px rgba(125,78,255,.08);
-}
-.icon{
-    width:52px;
-    height:52px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:15px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.08);
-    font-size:23px;
-    margin-bottom:45px;
-    transform:translateZ(25px);
-}
-.product h3{
-    font-size:21px;
-    transform:translateZ(20px);
-}
-.product p{
-    margin-top:9px;
-    color:#858592;
-    font-size:14px;
-    line-height:1.5;
-    min-height:44px;
-    transform:translateZ(15px);
-}
-.price{
-    font-size:32px;
-    font-weight:900;
-    margin:23px 0;
-    transform:translateZ(20px);
-}
-.price span{
-    color:#aaa;
-    font-size:15px;
-}
-.buy{
-    display:block;
-    text-align:center;
-    padding:13px;
-    border-radius:12px;
-    background:#fff;
-    color:#08080c;
-    text-decoration:none;
-    font-weight:900;
-    transition:.2s;
-    transform:translateZ(20px);
-}
-.buy:hover{
-    transform:translateZ(20px) scale(1.025);
-}
-/* =========================
-   ABOUT
-========================= */
-.about{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px;
-    margin-top:35px;
-}
-.about-card{
-    padding:32px;
-    border-radius:24px;
-    border:1px solid rgba(255,255,255,.08);
-    background:rgba(255,255,255,.025);
-    transition:.3s;
-}
-.about-card:hover{
-    transform:translateY(-5px);
-    border-color:rgba(145,100,255,.3);
-}
-.about-card h3{
-    font-size:25px;
-}
-.about-card p{
-    margin-top:13px;
-    color:#888896;
-    line-height:1.7;
-}
-.stats{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-top:25px;
-}
-.stat{
-    padding:18px;
-    border-radius:15px;
-    border:1px solid rgba(255,255,255,.07);
-}
-.stat b{
-    font-size:23px;
-}
-.stat span{
-    display:block;
-    color:#888896;
-    font-size:13px;
-    margin-top:5px;
-}
-/* =========================
-   CONTACT
-========================= */
-.contact{
-    text-align:center;
-    padding:65px 25px;
-    border-radius:27px;
-    border:1px solid rgba(255,255,255,.08);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #06070b;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* ФОН */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
     background:
         radial-gradient(
-            circle at center,
-            rgba(125,78,255,.14),
-            transparent 65%
+            circle at 75% 20%,
+            rgba(130, 70, 255, 0.25),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(0, 180, 255, 0.12),
+            transparent 30%
+        ),
+        #06070b;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    opacity: 0.12;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.03) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.03) 1px,
+            transparent 1px
         );
-    position:relative;
-    overflow:hidden;
+
+    background-size: 50px 50px;
 }
-.contact::after{
-    content:"";
-    position:absolute;
-    width:300px;
-    height:300px;
-    background:#7c3aed;
-    filter:blur(150px);
-    opacity:.12;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
+
+/* ОБЩЕЕ */
+
+.container {
+    width: min(1150px, 92%);
+    margin: auto;
 }
-.contact>*{
-    position:relative;
-    z-index:2;
+
+a {
+    color: inherit;
+    text-decoration: none;
 }
-.contact p{
-    max-width:600px;
-    margin:15px auto;
-    color:#8d8d9a;
-    line-height:1.6;
+
+/* NAVBAR */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 75px;
+
+    z-index: 100;
+
+    background: rgba(5, 6, 10, .65);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255,255,255,.07);
 }
-/* =========================
-   FOOTER
-========================= */
-footer{
-    padding:35px 20px;
-    text-align:center;
-    color:#62626f;
-    font-size:13px;
-    border-top:1px solid rgba(255,255,255,.07);
+
+.nav {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-/* =========================
-   SCROLL ANIMATION
-========================= */
-.reveal{
-    opacity:0;
-    transform:translateY(35px);
+
+.logo {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #9d6cff;
+}
+
+.menu {
+    display: flex;
+    gap: 30px;
+
+    color: #9ba2b1;
+    font-size: 14px;
+}
+
+.menu a {
+    transition: .25s;
+}
+
+.menu a:hover {
+    color: white;
+}
+
+.telegram-small {
+    padding: 11px 17px;
+
+    border-radius: 12px;
+
+    background: rgba(145, 90, 255, .12);
+    border: 1px solid rgba(145, 90, 255, .4);
+
+    transition: .3s;
+}
+
+.telegram-small:hover {
+    background: rgba(145, 90, 255, .25);
+    transform: translateY(-2px);
+}
+
+/* HERO */
+
+.hero {
+    min-height: 800px;
+    padding-top: 75px;
+
+    display: flex;
+    align-items: center;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+
+    gap: 50px;
+
+    align-items: center;
+}
+
+.badge {
+    display: inline-block;
+
+    padding: 8px 13px;
+
+    border-radius: 50px;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    color: #cdbbff;
+
+    background: rgba(140, 80, 255, .1);
+    border: 1px solid rgba(140, 80, 255, .3);
+
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(50px, 7vw, 90px);
+
+    line-height: .9;
+
+    letter-spacing: -5px;
+}
+
+.gradient {
+    background: linear-gradient(
+        100deg,
+        #ffffff,
+        #a778ff,
+        #61d8ff
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero-text {
+    margin-top: 25px;
+
+    max-width: 620px;
+
+    color: #9299a8;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+}
+
+/* BUTTONS */
+
+.buttons {
+    display: flex;
+    gap: 12px;
+
+    margin-top: 30px;
+
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 15px 23px;
+
+    border-radius: 13px;
+
+    font-weight: 800;
+
+    transition: .3s;
+
+    cursor: pointer;
+}
+
+.download {
+    background: linear-gradient(
+        135deg,
+        #9d6cff,
+        #673fd8
+    );
+
+    box-shadow:
+        0 10px 35px rgba(124,58,237,.25);
+}
+
+.download:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 45px rgba(124,58,237,.45);
+}
+
+.telegram {
+    background: rgba(255,255,255,.04);
+
+    border: 1px solid rgba(255,255,255,.1);
+}
+
+.telegram:hover {
+    background: rgba(255,255,255,.08);
+
+    transform: translateY(-4px);
+}
+
+/* GAME CARD */
+
+.game-card {
+    height: 480px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(145,80,255,.18),
+            rgba(20,24,35,.8)
+        );
+
+    border: 1px solid rgba(255,255,255,.1);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.5);
+
+    display: flex;
+
+    align-items: flex-end;
+}
+
+.game-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background: #7c3aed;
+
+    filter: blur(110px);
+
+    opacity: .3;
+
+    top: -100px;
+    right: -100px;
+}
+
+.game-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    border-radius: 50%;
+
+    background: #1597ff;
+
+    filter: blur(130px);
+
+    opacity: .12;
+
+    bottom: -100px;
+    left: -100px;
+}
+
+.card-content {
+    position: relative;
+
+    z-index: 2;
+
+    padding: 35px;
+}
+
+.card-logo {
+    font-size: 65px;
+
+    font-weight: 1000;
+
+    letter-spacing: -5px;
+}
+
+.card-logo span {
+    color: #a878ff;
+}
+
+.card-info {
+    margin-top: 8px;
+
+    color: #aab0bd;
+}
+
+/* SECTIONS */
+
+section {
+    padding: 100px 0;
+}
+
+.section-title {
+    font-size: 43px;
+
+    letter-spacing: -2px;
+}
+
+.section-description {
+    margin-top: 12px;
+
+    max-width: 650px;
+
+    color: #858d9d;
+
+    line-height: 1.6;
+}
+
+/* CARDS */
+
+.cards {
+    margin-top: 40px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.card {
+    padding: 28px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.035);
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+
+    border-color:
+        rgba(150,100,255,.4);
+
+    background:
+        rgba(255,255,255,.055);
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 14px;
+
+    background:
+        rgba(150,100,255,.13);
+
+    font-size: 23px;
+
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 19px;
+
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #858d9d;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+/* NEWS */
+
+.news-card {
+    min-height: 180px;
+}
+
+/* DOWNLOAD */
+
+.download-section {
+    padding-bottom: 110px;
+}
+
+.download-box {
+    padding: 70px 30px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(150,90,255,.15),
+            rgba(60,160,255,.05)
+        );
+
+    border: 1px solid
+        rgba(150,100,255,.25);
+}
+
+.download-box h2 {
+    font-size: 47px;
+
+    letter-spacing: -2px;
+}
+
+.download-box p {
+    max-width: 600px;
+
+    margin: 15px auto 25px;
+
+    color: #969eae;
+
+    line-height: 1.6;
+}
+
+/* STEPS */
+
+.steps {
+    margin-top: 30px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.step {
+    padding: 25px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,.03);
+
+    border: 1px solid rgba(255,255,255,.07);
+}
+
+.step-number {
+    color: #a778ff;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    margin-bottom: 15px;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 35px 0;
+
+    border-top:
+        1px solid rgba(255,255,255,.07);
+
+    color: #697180;
+}
+
+.footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+/* АНИМАЦИЯ */
+
+.reveal {
+    opacity: 0;
+
+    transform:
+        translateY(30px);
+
     transition:
-        opacity .8s ease,
-        transform .8s ease;
+        .8s ease;
 }
-.reveal.show{
-    opacity:1;
-    transform:translateY(0);
+
+.reveal.show {
+    opacity: 1;
+
+    transform:
+        translateY(0);
 }
-/* =========================
-   MOBILE
-========================= */
-@media(max-width:800px){
-    .nav-links{
-        display:none;
+
+/* МОБИЛЬНАЯ ВЕРСИЯ */
+
+@media(max-width: 800px) {
+
+    .menu {
+        display: none;
     }
-    .hero{
-        grid-template-columns:1fr;
-        padding-top:125px;
-        gap:50px;
+
+    .hero {
+        padding-top: 130px;
+
+        min-height: auto;
+
+        padding-bottom: 70px;
     }
-    .products{
-        grid-template-columns:1fr;
+
+    .hero-grid {
+        grid-template-columns: 1fr;
     }
-    .about{
-        grid-template-columns:1fr;
+
+    .game-card {
+        height: 350px;
     }
-    .visual{
-        margin-top:20px;
+
+    .hero h1 {
+        font-size: 55px;
+
+        letter-spacing: -3px;
     }
-    .title{
-        font-size:36px;
+
+    .cards {
+        grid-template-columns: 1fr;
     }
-}
-@media(max-width:450px){
-    nav{
-        padding:0 14px;
+
+    .steps {
+        grid-template-columns: 1fr;
     }
-    .logo{
-        font-size:17px;
+
+    section {
+        padding: 70px 0;
     }
-    .telegram{
-        padding:9px 11px;
-        font-size:13px;
+
+    .section-title {
+        font-size: 34px;
     }
-    .hero,
-    section{
-        padding-left:16px;
-        padding-right:16px;
+
+    .download-box {
+        padding: 50px 20px;
     }
-    h1{
-        font-size:52px;
-        letter-spacing:-4px;
+
+    .download-box h2 {
+        font-size: 35px;
     }
-    .hero-text{
-        font-size:16px;
+
+    .footer {
+        flex-direction: column;
     }
-    .preview{
-        width:275px;
-    }
-    .stats{
-        grid-template-columns:1fr;
+
+    .telegram-small {
+        display: none;
     }
 }
 </style>
 </head>
+
+
 <body>
-<!-- BACKGROUND -->
-<div class="background">
-    <div class="grid"></div>
-    <div class="glow one"></div>
-    <div class="glow two"></div>
-    <div class="glow three"></div>
-</div>
-<canvas id="particles"></canvas>
-<div class="cursor"></div>
-<!-- HEADER -->
-<header>
+
+
+<!-- НАВИГАЦИЯ -->
+
 <nav>
-<a class="logo" href="#">
-    TYTOR <span>Studio</span>
+
+<div class="container nav">
+
+<a href="#" class="logo">
+MARSIANIN <span>STUDIO</span>
 </a>
-<div class="nav-links">
-<a href="#projects">Проекты</a>
-<a href="#about">О студии</a>
-<a href="#contacts">Контакты</a>
+
+<div class="menu">
+
+<a href="#about">О проекте</a>
+
+<a href="#features">Возможности</a>
+
+<a href="#news">Новости</a>
+
+<a href="#download">Скачать</a>
+
 </div>
+
 <a
-class="telegram"
+href="https://t.me/marsianinstudio"
+target="_blank"
+class="telegram-small"
+>
+Telegram ↗
+</a>
+
+</div>
+
+</nav>
+
+
+
+<!-- ГЛАВНЫЙ ЭКРАН -->
+
+<section class="hero">
+
+<div class="container hero-grid">
+
+
+<div class="reveal">
+
+<div class="badge">
+● НОВЫЙ CRMP-ПРОЕКТ
+</div>
+
+
+<h1>
+
+MARSIANIN
+
+<br>
+
+<span class="gradient">
+STUDIO
+</span>
+
+</h1>
+
+
+<p class="hero-text">
+
+Добро пожаловать в новый мир CRMP.
+Уникальный проект, собственная атмосфера
+и множество возможностей для игры.
+
+</p>
+
+
+<div class="buttons">
+
+<a
+href="#download"
+class="btn download"
+>
+⬇ Скачать игру
+</a>
+
+
+<a
+href="https://t.me/marsianinstudio"
+target="_blank"
+class="btn telegram"
+>
+✈ Telegram
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- ПРАВАЯ КАРТОЧКА -->
+
+<div class="game-card reveal">
+
+<div class="card-content">
+
+<div class="card-logo">
+
+M<span>S</span>
+
+</div>
+
+<div class="card-info">
+
+CRMP • MARSIANIN STUDIO
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- О ПРОЕКТЕ -->
+
+<section id="about">
+
+<div class="container">
+
+
+<div class="reveal">
+
+<div class="badge">
+О ПРОЕКТЕ
+</div>
+
+
+<h2 class="section-title">
+
+Создано для настоящей игры
+
+</h2>
+
+
+<p class="section-description">
+
+MARSIANIN STUDIO — игровой CRMP-проект
+со своей атмосферой, механиками и сообществом.
+
+</p>
+
+</div>
+
+
+
+<div
+class="cards"
+id="features"
+>
+
+
+<div class="card reveal">
+
+<div class="icon">
+🚗
+</div>
+
+<h3>
+Большой мир
+</h3>
+
+<p>
+Исследуй игровой мир, выполняй задания
+и создавай собственную историю.
+</p>
+
+</div>
+
+
+
+<div class="card reveal">
+
+<div class="icon">
+👥
+</div>
+
+<h3>
+Живое сообщество
+</h3>
+
+<p>
+Общайся с игроками, вступай в организации
+и развивай своего персонажа.
+</p>
+
+</div>
+
+
+
+<div class="card reveal">
+
+<div class="icon">
+⚡
+</div>
+
+<h3>
+Своя атмосфера
+</h3>
+
+<p>
+Уникальные механики, оформление
+и контент MARSIANIN STUDIO.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- НОВОСТИ -->
+
+<section id="news">
+
+<div class="container">
+
+
+<div class="reveal">
+
+<div class="badge">
+НОВОСТИ
+</div>
+
+
+<h2 class="section-title">
+
+Последние новости
+
+</h2>
+
+
+<p class="section-description">
+
+Все важные новости проекта публикуются
+в официальном Telegram-канале.
+
+</p>
+
+</div>
+
+
+
+<div class="cards">
+
+
+<div class="card news-card reveal">
+
+<div class="icon">
+🚀
+</div>
+
+<h3>
+Скоро открытие
+</h3>
+
+<p>
+Следи за Telegram, чтобы первым узнать
+дату запуска проекта.
+</p>
+
+</div>
+
+
+
+<div class="card news-card reveal">
+
+<div class="icon">
+🛠️
+</div>
+
+<h3>
+Разработка
+</h3>
+
+<p>
+Проект находится в разработке.
+Новые возможности появятся совсем скоро.
+</p>
+
+</div>
+
+
+
+<div class="card news-card reveal">
+
+<div class="icon">
+📢
+</div>
+
+<h3>
+Наш Telegram
+</h3>
+
+<p>
+Новости, обновления и объявления
+публикуются в нашем канале.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- СКАЧИВАНИЕ -->
+
+<section
+id="download"
+class="download-section"
+>
+
+<div class="container">
+
+
+<div class="download-box reveal">
+
+
+<div class="badge">
+ДОСТУП К ИГРЕ
+</div>
+
+
+<h2>
+Готов начать?
+</h2>
+
+
+<p>
+
+Ссылка на скачивание пока не добавлена.
+После загрузки игры мы заменим эту кнопку
+на настоящую ссылку.
+
+</p>
+
+
+<div class="buttons"
+style="justify-content:center"
+>
+
+
+<!-- ПОКА НЕ РАБОТАЕТ -->
+
+<a
+href="#"
+class="btn download"
+onclick="
+alert('Ссылка на игру пока не добавлена!');
+return false;
+"
+>
+⬇ Скачать игру
+</a>
+
+
+<a
+href="https://t.me/marsianinstudio"
+target="_blank"
+class="btn telegram"
+>
+✈ Telegram
+</a>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ШАГИ -->
+
+<div class="steps">
+
+
+<div class="step reveal">
+
+<div class="step-number">
+01 / TELEGRAM
+</div>
+
+<h3>
+Подпишись
+</h3>
+
+<p>
+Следи за новостями проекта
+и датой запуска.
+</p>
+
+</div>
+
+
+
+<div class="step reveal">
+
+<div class="step-number">
+02 / DOWNLOAD
+</div>
+
+<h3>
+Скачай игру
+</h3>
+
+<p>
+После релиза здесь появится
+рабочая ссылка.
+</p>
+
+</div>
+
+
+
+<div class="step reveal">
+
+<div class="step-number">
+03 / PLAY
+</div>
+
+<h3>
+Заходи в игру
+</h3>
+
+<p>
+Создавай персонажа
+и начинай свою историю.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="container footer">
+
+<div>
+© 2026 MARSIANIN STUDIO
+</div>
+
+
+<a
 href="https://t.me/marsianinstudio"
 target="_blank"
 >
 Telegram ↗
 </a>
-</nav>
-</header>
-<!-- HERO -->
-<section class="hero">
-<div class="reveal">
-<div class="badge">
-CRMP PROJECT STORE
+
 </div>
-<h1>
-Создаём.<br>
-<span class="gradient">
-Запускаем.
-</span>
-<br>
-Развиваем.
-</h1>
-<p class="hero-text">
-TYTOR Studio — магазин CRMP-проектов.
-Выбирай подходящий проект и запускай свой сервер.
-</p>
-<div class="buttons">
-<a
-class="button primary"
-href="#projects"
->
-Смотреть проекты ↓
-</a>
-<a
-class="button secondary"
-href="https://t.me/marsianinstudio"
-target="_blank"
->
-Наш Telegram
-</a>
-</div>
-</div>
-<div class="visual reveal">
-<div class="preview">
-<div class="preview-label">
-TYTOR STUDIO
-</div>
-<h2>
-CRMP Projects
-</h2>
-<div class="line"></div>
-<div class="preview-row">
-<span>Проекты</span>
-<strong>03</strong>
-</div>
-<div class="preview-row">
-<span>Формат</span>
-<strong>CRMP</strong>
-</div>
-<div class="preview-row">
-<span>Связь</span>
-<strong>Telegram</strong>
-</div>
-</div>
-</div>
-</section>
-<!-- PROJECTS -->
-<section id="projects">
-<div class="reveal">
-<div class="label">
-Каталог
-</div>
-<h2 class="title">
-Выбери свой проект
-</h2>
-<p class="description">
-Три варианта под разные задачи. Цены указаны в Telegram Stars.
-</p>
-</div>
-<div class="products">
-<article
-class="product reveal"
-style="--color:#9b6cff"
->
-<div class="icon">
-👑
-</div>
-<h3>
-Black Russia Premium
-</h3>
-<p>
-Премиальный вариант CRMP-проекта.
-</p>
-<div class="price">
-75 <span>⭐️</span>
-</div>
-<a
-class="buy"
-href="https://t.me/marsianinstudio"
-target="_blank"
->
-Заказать
-</a>
-</article>
-<article
-class="product reveal"
-style="--color:#4f8cff"
->
-<div class="icon">
-⚡
-</div>
-<h3>
-Black Russia Lite
-</h3>
-<p>
-Облегчённый вариант проекта.
-</p>
-<div class="price">
-50 <span>⭐️</span>
-</div>
-<a
-class="buy"
-href="https://t.me/marsianinstudio"
-target="_blank"
->
-Заказать
-</a>
-</article>
-<article
-class="product reveal"
-style="--color:#35d39a"
->
-<div class="icon">
-💎
-</div>
-<h3>
-Black Russia Economy
-</h3>
-<p>
-Доступный вариант для запуска CRMP.
-</p>
-<div class="price">
-25 <span>⭐️</span>
-</div>
-<a
-class="buy"
-href="https://t.me/marsianinstudio"
-target="_blank"
->
-Заказать
-</a>
-</article>
-</div>
-</section>
-<!-- ABOUT -->
-<section id="about">
-<div class="reveal">
-<div class="label">
-О студии
-</div>
-<h2 class="title">
-TYTOR Studio
-</h2>
-</div>
-<div class="about">
-<div class="about-card reveal">
-<h3>
-Проекты в одном месте.
-</h3>
-<p>
-Мы собрали CRMP-проекты в удобный каталог.
-Выбирай нужный вариант, переходи в Telegram
-и уточняй детали заказа.
-</p>
-</div>
-<div class="about-card reveal">
-<h3>
-Связь
-</h3>
-<p>
-По вопросам покупки и дополнительной информации
-обращайся через Telegram.
-</p>
-<div class="stats">
-<div class="stat">
-<b>03</b>
-<span>
-проекта
-</span>
-</div>
-<div class="stat">
-<b>⭐️</b>
-<span>
-Telegram Stars
-</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- CONTACT -->
-<section id="contacts">
-<div class="contact reveal">
-<div class="label">
-Контакты
-</div>
-<h2 class="title">
-Готов начать?
-</h2>
-<p>
-Напиши нам в Telegram, чтобы узнать подробности
-и оформить заказ.
-</p>
-<div class="buttons" style="justify-content:center">
-<a
-class="button primary"
-href="https://t.me/marsianinstudio"
-target="_blank"
->
-TYTOR Studio ↗
-</a>
-<a
-class="button secondary"
-href="https://t.me/Rodioooon"
-target="_blank"
->
-@Rodioooon ↗
-</a>
-</div>
-</div>
-</section>
-<footer>
-© 2026 TYTOR · CRMP Project Store
+
 </footer>
+
+
+
+<!-- JAVASCRIPT -->
+
 <script>
-/* =========================
-   PARTICLES
-========================= */
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-let particles = [];
-function resize(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
-for(let i=0;i<80;i++){
-    particles.push({
-        x:Math.random()*window.innerWidth,
-        y:Math.random()*window.innerHeight,
-        size:Math.random()*2+0.5,
-        speed:Math.random()*0.35+0.1,
-        opacity:Math.random()*0.7
-    });
-}
-function animateParticles(){
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-    particles.forEach(p=>{
-        p.y -= p.speed;
-        if(p.y < 0){
-            p.y = canvas.height;
-            p.x = Math.random()*canvas.width;
-        }
-        ctx.beginPath();
-        ctx.arc(
-            p.x,
-            p.y,
-            p.size,
-            0,
-            Math.PI*2
-        );
-        ctx.fillStyle =
-            `rgba(180,160,255,${p.opacity})`;
-        ctx.fill();
-    });
-    requestAnimationFrame(animateParticles);
-}
-animateParticles();
-/* =========================
-   CURSOR
-========================= */
-const cursor =
-document.querySelector(".cursor");
-document.addEventListener(
-"mousemove",
-e=>{
-    cursor.style.left =
-        e.clientX + "px";
-    cursor.style.top =
-        e.clientY + "px";
-});
-/* =========================
-   SCROLL REVEAL
-========================= */
+
+const elements =
+document.querySelectorAll(".reveal");
+
+
 const observer =
 new IntersectionObserver(
-entries=>{
-    entries.forEach(entry=>{
-        if(entry.isIntersecting){
-            entry.target.classList.add("show");
-        }
-    });
-},
-{
-    threshold:.12
+
+(entries) => {
+
+entries.forEach(
+
+(entry) => {
+
+if(entry.isIntersecting) {
+
+entry.target.classList.add("show");
+
 }
+
+}
+
 );
-document
-.querySelectorAll(".reveal")
-.forEach(el=>observer.observe(el));
-/* =========================
-   3D CARDS
-========================= */
-document
-.querySelectorAll(".product")
-.forEach(card=>{
-    card.addEventListener(
-    "mousemove",
-    e=>{
-        const rect =
-            card.getBoundingClientRect();
-        const x =
-            e.clientX - rect.left;
-        const y =
-            e.clientY - rect.top;
-        const centerX =
-            rect.width / 2;
-        const centerY =
-            rect.height / 2;
-        const rotateX =
-            ((y-centerY)/centerY)*-5;
-        const rotateY =
-            ((x-centerX)/centerX)*5;
-        card.style.transform =
-            `perspective(700px)
-             rotateX(${rotateX}deg)
-             rotateY(${rotateY}deg)
-             translateY(-5px)`;
-    });
-    card.addEventListener(
-    "mouseleave",
-    ()=>{
-        card.style.transform =
-            "";
-    });
-});
+
+},
+
+{
+threshold: 0.12
+}
+
+);
+
+
+elements.forEach(
+(element) =>
+observer.observe(element)
+);
+
 </script>
+
+
 </body>
 </html>
