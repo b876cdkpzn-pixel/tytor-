@@ -7,640 +7,735 @@
 <title>MARSIANIN STUDIO — CRMP</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #06070b;
-    color: white;
-    overflow-x: hidden;
+body{
+    background:#050609;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
 }
 
-/* ФОН */
+a{
+    color:inherit;
+    text-decoration:none;
+}
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -2;
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:75px;
+    z-index:100;
+
+    background:rgba(5,6,9,.55);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.nav-container{
+    width:92%;
+    max-width:1250px;
+    height:100%;
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.nav-name{
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.nav-menu{
+    display:flex;
+    gap:30px;
+}
+
+.nav-menu a{
+    color:#a6a9b3;
+    font-size:14px;
+    transition:.3s;
+}
+
+.nav-menu a:hover{
+    color:white;
+}
+
+.nav-telegram{
+    padding:11px 18px;
+    border-radius:12px;
+
+    background:rgba(75,150,255,.12);
+    border:1px solid rgba(75,150,255,.35);
+
+    transition:.3s;
+}
+
+.nav-telegram:hover{
+    transform:translateY(-2px);
+    background:rgba(75,150,255,.2);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:850px;
+    position:relative;
+
+    display:flex;
+    align-items:center;
+
+    overflow:hidden;
 
     background:
-        radial-gradient(
-            circle at 75% 20%,
-            rgba(130, 70, 255, 0.25),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 15% 80%,
-            rgba(0, 180, 255, 0.12),
-            transparent 30%
-        ),
-        #06070b;
-}
-
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-
-    opacity: 0.12;
-
-    background-image:
-        linear-gradient(
-            rgba(255,255,255,.03) 1px,
-            transparent 1px
-        ),
         linear-gradient(
             90deg,
-            rgba(255,255,255,.03) 1px,
-            transparent 1px
+            rgba(3,4,7,.98) 0%,
+            rgba(3,4,7,.72) 42%,
+            rgba(3,4,7,.25) 100%
+        ),
+
+        url("https://fons.grizly.club/uploads/posts/2025-06/26/17509193917946.jpg");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+    left:0;
+    bottom:0;
+
+    width:100%;
+    height:250px;
+
+    background:
+        linear-gradient(
+            transparent,
+            #050609
         );
-
-    background-size: 50px 50px;
 }
 
-/* ОБЩЕЕ */
+.hero-content{
+    width:92%;
+    max-width:1250px;
+    margin:auto;
 
-.container {
-    width: min(1150px, 92%);
-    margin: auto;
+    position:relative;
+    z-index:2;
+
+    padding-top:80px;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+.hero-small{
+    display:inline-block;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+
+    color:#c5c7ce;
+
+    font-size:12px;
+    font-weight:bold;
+
+    margin-bottom:22px;
 }
 
-/* NAVBAR */
+.hero h1{
+    font-size:clamp(55px,8vw,105px);
 
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
+    line-height:.86;
 
-    width: 100%;
-    height: 75px;
+    letter-spacing:-6px;
 
-    z-index: 100;
-
-    background: rgba(5, 6, 10, .65);
-    backdrop-filter: blur(18px);
-
-    border-bottom: 1px solid rgba(255,255,255,.07);
+    max-width:750px;
 }
 
-.nav {
-    height: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.hero h1 span{
+    color:#9d6cff;
 }
 
-.logo {
-    font-size: 20px;
-    font-weight: 900;
-    letter-spacing: 1px;
+.hero-description{
+    max-width:570px;
+
+    margin-top:28px;
+
+    color:#a4a8b3;
+
+    font-size:18px;
+
+    line-height:1.7;
 }
 
-.logo span {
-    color: #9d6cff;
+.buttons{
+    display:flex;
+    gap:12px;
+
+    margin-top:32px;
+
+    flex-wrap:wrap;
 }
 
-.menu {
-    display: flex;
-    gap: 30px;
+.button{
+    padding:16px 25px;
 
-    color: #9ba2b1;
-    font-size: 14px;
+    border-radius:13px;
+
+    font-weight:900;
+
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+
+    transition:.3s;
 }
 
-.menu a {
-    transition: .25s;
-}
-
-.menu a:hover {
-    color: white;
-}
-
-.telegram-small {
-    padding: 11px 17px;
-
-    border-radius: 12px;
-
-    background: rgba(145, 90, 255, .12);
-    border: 1px solid rgba(145, 90, 255, .4);
-
-    transition: .3s;
-}
-
-.telegram-small:hover {
-    background: rgba(145, 90, 255, .25);
-    transform: translateY(-2px);
-}
-
-/* HERO */
-
-.hero {
-    min-height: 800px;
-    padding-top: 75px;
-
-    display: flex;
-    align-items: center;
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1.1fr .9fr;
-
-    gap: 50px;
-
-    align-items: center;
-}
-
-.badge {
-    display: inline-block;
-
-    padding: 8px 13px;
-
-    border-radius: 50px;
-
-    font-size: 12px;
-    font-weight: bold;
-
-    color: #cdbbff;
-
-    background: rgba(140, 80, 255, .1);
-    border: 1px solid rgba(140, 80, 255, .3);
-
-    margin-bottom: 20px;
-}
-
-.hero h1 {
-    font-size: clamp(50px, 7vw, 90px);
-
-    line-height: .9;
-
-    letter-spacing: -5px;
-}
-
-.gradient {
-    background: linear-gradient(
-        100deg,
-        #ffffff,
-        #a778ff,
-        #61d8ff
-    );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
-}
-
-.hero-text {
-    margin-top: 25px;
-
-    max-width: 620px;
-
-    color: #9299a8;
-
-    font-size: 18px;
-
-    line-height: 1.7;
-}
-
-/* BUTTONS */
-
-.buttons {
-    display: flex;
-    gap: 12px;
-
-    margin-top: 30px;
-
-    flex-wrap: wrap;
-}
-
-.btn {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 8px;
-
-    padding: 15px 23px;
-
-    border-radius: 13px;
-
-    font-weight: 800;
-
-    transition: .3s;
-
-    cursor: pointer;
-}
-
-.download {
-    background: linear-gradient(
+.button-download{
+    background:linear-gradient(
         135deg,
-        #9d6cff,
-        #673fd8
+        #9c67ff,
+        #613bd1
     );
 
     box-shadow:
-        0 10px 35px rgba(124,58,237,.25);
+        0 10px 40px rgba(120,60,230,.3);
 }
 
-.download:hover {
-    transform: translateY(-4px);
+.button-download:hover{
+    transform:translateY(-4px);
 
     box-shadow:
-        0 15px 45px rgba(124,58,237,.45);
+        0 15px 55px rgba(120,60,230,.5);
 }
 
-.telegram {
-    background: rgba(255,255,255,.04);
+.button-telegram{
+    background:rgba(255,255,255,.07);
 
-    border: 1px solid rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.12);
 }
 
-.telegram:hover {
-    background: rgba(255,255,255,.08);
+.button-telegram:hover{
+    background:rgba(255,255,255,.12);
 
-    transform: translateY(-4px);
+    transform:translateY(-4px);
 }
 
-/* GAME CARD */
 
-.game-card {
-    height: 480px;
+/* =========================
+   GENERAL
+========================= */
 
-    position: relative;
+.container{
+    width:92%;
+    max-width:1250px;
+    margin:auto;
+}
 
-    overflow: hidden;
+section{
+    padding:110px 0;
+}
 
-    border-radius: 30px;
+.section-label{
+    color:#9d6cff;
+
+    font-size:12px;
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    margin-bottom:15px;
+}
+
+.section-title{
+    font-size:46px;
+
+    letter-spacing:-2px;
+}
+
+.section-text{
+    color:#858b99;
+
+    max-width:650px;
+
+    line-height:1.7;
+
+    margin-top:14px;
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+
+    margin-top:45px;
+}
+
+.feature{
+    padding:30px;
+
+    min-height:220px;
+
+    border-radius:22px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(145,80,255,.18),
-            rgba(20,24,35,.8)
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.018)
         );
 
-    border: 1px solid rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.08);
 
-    box-shadow:
-        0 30px 100px rgba(0,0,0,.5);
-
-    display: flex;
-
-    align-items: flex-end;
+    transition:.35s;
 }
 
-.game-card::before {
-    content: "";
-
-    position: absolute;
-
-    width: 350px;
-    height: 350px;
-
-    border-radius: 50%;
-
-    background: #7c3aed;
-
-    filter: blur(110px);
-
-    opacity: .3;
-
-    top: -100px;
-    right: -100px;
-}
-
-.game-card::after {
-    content: "";
-
-    position: absolute;
-
-    width: 250px;
-    height: 250px;
-
-    border-radius: 50%;
-
-    background: #1597ff;
-
-    filter: blur(130px);
-
-    opacity: .12;
-
-    bottom: -100px;
-    left: -100px;
-}
-
-.card-content {
-    position: relative;
-
-    z-index: 2;
-
-    padding: 35px;
-}
-
-.card-logo {
-    font-size: 65px;
-
-    font-weight: 1000;
-
-    letter-spacing: -5px;
-}
-
-.card-logo span {
-    color: #a878ff;
-}
-
-.card-info {
-    margin-top: 8px;
-
-    color: #aab0bd;
-}
-
-/* SECTIONS */
-
-section {
-    padding: 100px 0;
-}
-
-.section-title {
-    font-size: 43px;
-
-    letter-spacing: -2px;
-}
-
-.section-description {
-    margin-top: 12px;
-
-    max-width: 650px;
-
-    color: #858d9d;
-
-    line-height: 1.6;
-}
-
-/* CARDS */
-
-.cards {
-    margin-top: 40px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 18px;
-}
-
-.card {
-    padding: 28px;
-
-    border-radius: 20px;
-
-    background: rgba(255,255,255,.035);
-
-    border: 1px solid rgba(255,255,255,.08);
-
-    transition: .3s;
-}
-
-.card:hover {
-    transform: translateY(-7px);
+.feature:hover{
+    transform:translateY(-8px);
 
     border-color:
-        rgba(150,100,255,.4);
+        rgba(157,108,255,.45);
 
-    background:
-        rgba(255,255,255,.055);
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.3);
 }
 
-.icon {
-    width: 50px;
-    height: 50px;
+.feature-icon{
+    font-size:30px;
 
-    display: grid;
-    place-items: center;
-
-    border-radius: 14px;
-
-    background:
-        rgba(150,100,255,.13);
-
-    font-size: 23px;
-
-    margin-bottom: 20px;
+    margin-bottom:22px;
 }
 
-.card h3 {
-    font-size: 19px;
+.feature h3{
+    font-size:20px;
 
-    margin-bottom: 10px;
+    margin-bottom:12px;
 }
 
-.card p {
-    color: #858d9d;
+.feature p{
+    color:#858b99;
 
-    font-size: 14px;
+    line-height:1.7;
 
-    line-height: 1.7;
+    font-size:14px;
 }
 
-/* NEWS */
 
-.news-card {
-    min-height: 180px;
+/* =========================
+   GALLERY
+========================= */
+
+.gallery{
+    display:grid;
+
+    grid-template-columns:
+        1.4fr .8fr;
+
+    gap:18px;
+
+    margin-top:45px;
 }
 
-/* DOWNLOAD */
-
-.download-section {
-    padding-bottom: 110px;
+.gallery-column{
+    display:grid;
+    gap:18px;
 }
 
-.download-box {
-    padding: 70px 30px;
+.gallery-item{
+    min-height:270px;
 
-    text-align: center;
+    border-radius:22px;
 
-    border-radius: 30px;
+    overflow:hidden;
+
+    position:relative;
+
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.gallery-item.big{
+    min-height:560px;
+}
+
+.gallery-item img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.7s;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.07);
+}
+
+.gallery-overlay{
+    position:absolute;
+    inset:0;
 
     background:
         linear-gradient(
-            135deg,
-            rgba(150,90,255,.15),
-            rgba(60,160,255,.05)
+            transparent 45%,
+            rgba(0,0,0,.8)
         );
 
-    border: 1px solid
-        rgba(150,100,255,.25);
+    display:flex;
+    align-items:flex-end;
+
+    padding:25px;
 }
 
-.download-box h2 {
-    font-size: 47px;
-
-    letter-spacing: -2px;
+.gallery-overlay span{
+    font-size:15px;
+    font-weight:bold;
 }
 
-.download-box p {
-    max-width: 600px;
 
-    margin: 15px auto 25px;
+/* =========================
+   NEWS
+========================= */
 
-    color: #969eae;
-
-    line-height: 1.6;
-}
-
-/* STEPS */
-
-.steps {
-    margin-top: 30px;
-
-    display: grid;
+.news{
+    display:grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(3,1fr);
 
-    gap: 18px;
+    gap:18px;
+
+    margin-top:45px;
 }
 
-.step {
-    padding: 25px;
+.news-card{
+    overflow:hidden;
 
-    border-radius: 18px;
+    border-radius:20px;
 
-    background: rgba(255,255,255,.03);
+    background:#0b0d12;
 
-    border: 1px solid rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
 }
 
-.step-number {
-    color: #a778ff;
-
-    font-size: 13px;
-
-    font-weight: 900;
-
-    margin-bottom: 15px;
+.news-card:hover{
+    transform:translateY(-7px);
 }
 
-/* FOOTER */
+.news-image{
+    height:190px;
+    overflow:hidden;
+}
 
-footer {
-    padding: 35px 0;
+.news-image img{
+    width:100%;
+    height:100%;
 
+    object-fit:cover;
+
+    transition:.5s;
+}
+
+.news-card:hover img{
+    transform:scale(1.06);
+}
+
+.news-content{
+    padding:23px;
+}
+
+.news-date{
+    color:#9d6cff;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+}
+
+.news-content h3{
+    font-size:18px;
+
+    margin-bottom:10px;
+}
+
+.news-content p{
+    color:#7f8695;
+
+    font-size:14px;
+
+    line-height:1.6;
+}
+
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+.download-section{
+    padding-bottom:120px;
+}
+
+.download-box{
+    min-height:430px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(5,6,9,.98),
+            rgba(5,6,9,.65)
+        ),
+
+        url("https://image.aiting.com/s1/17/e2/56f9cef251dd832ecde48d4c390412c3.webp");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.download-content{
+    padding:60px;
+
+    max-width:650px;
+
+    position:relative;
+    z-index:2;
+}
+
+.download-content h2{
+    font-size:52px;
+
+    letter-spacing:-3px;
+}
+
+.download-content p{
+    color:#969ca9;
+
+    line-height:1.7;
+
+    margin-top:15px;
+}
+
+
+/* =========================
+   STEPS
+========================= */
+
+.steps{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+
+    margin-top:25px;
+}
+
+.step{
+    padding:27px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid rgba(255,255,255,.07);
+}
+
+.step-number{
+    color:#9d6cff;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    margin-bottom:17px;
+}
+
+.step h3{
+    margin-bottom:9px;
+}
+
+.step p{
+    color:#858b99;
+
+    font-size:14px;
+
+    line-height:1.6;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
     border-top:
         1px solid rgba(255,255,255,.07);
 
-    color: #697180;
+    padding:35px 0;
+
+    color:#666d7b;
 }
 
-.footer {
-    display: flex;
+.footer{
+    display:flex;
 
-    justify-content: space-between;
+    align-items:center;
 
-    gap: 20px;
+    justify-content:space-between;
 }
 
-/* АНИМАЦИЯ */
+.footer a{
+    color:#9d6cff;
+}
 
-.reveal {
-    opacity: 0;
+
+/* =========================
+   ANIMATION
+========================= */
+
+.reveal{
+    opacity:0;
 
     transform:
-        translateY(30px);
+        translateY(35px);
 
     transition:
         .8s ease;
 }
 
-.reveal.show {
-    opacity: 1;
+.reveal.show{
+    opacity:1;
 
     transform:
         translateY(0);
 }
 
-/* МОБИЛЬНАЯ ВЕРСИЯ */
 
-@media(max-width: 800px) {
+/* =========================
+   MOBILE
+========================= */
 
-    .menu {
-        display: none;
+@media(max-width:800px){
+
+    .nav-menu{
+        display:none;
     }
 
-    .hero {
-        padding-top: 130px;
+    .hero{
+        min-height:760px;
 
-        min-height: auto;
-
-        padding-bottom: 70px;
+        background-position:
+            65% center;
     }
 
-    .hero-grid {
-        grid-template-columns: 1fr;
+    .hero h1{
+        font-size:58px;
+
+        letter-spacing:-3px;
     }
 
-    .game-card {
-        height: 350px;
+    .hero-description{
+        font-size:16px;
     }
 
-    .hero h1 {
-        font-size: 55px;
-
-        letter-spacing: -3px;
+    section{
+        padding:75px 0;
     }
 
-    .cards {
-        grid-template-columns: 1fr;
+    .section-title{
+        font-size:35px;
     }
 
-    .steps {
-        grid-template-columns: 1fr;
+    .features,
+    .news,
+    .steps{
+        grid-template-columns:1fr;
     }
 
-    section {
-        padding: 70px 0;
+    .gallery{
+        grid-template-columns:1fr;
     }
 
-    .section-title {
-        font-size: 34px;
+    .gallery-item.big{
+        min-height:330px;
     }
 
-    .download-box {
-        padding: 50px 20px;
+    .gallery-item{
+        min-height:230px;
     }
 
-    .download-box h2 {
-        font-size: 35px;
+    .download-box{
+        min-height:500px;
     }
 
-    .footer {
-        flex-direction: column;
+    .download-content{
+        padding:30px;
     }
 
-    .telegram-small {
-        display: none;
+    .download-content h2{
+        font-size:38px;
     }
+
+    .footer{
+        flex-direction:column;
+        gap:15px;
+    }
+
 }
+
 </style>
 </head>
 
@@ -648,32 +743,40 @@ footer {
 <body>
 
 
-<!-- НАВИГАЦИЯ -->
+<!-- NAVIGATION -->
 
-<nav>
+<nav class="navbar">
 
-<div class="container nav">
+<div class="nav-container">
 
-<a href="#" class="logo">
-MARSIANIN <span>STUDIO</span>
+<div class="nav-name">
+MARSIANIN STUDIO
+</div>
+
+<div class="nav-menu">
+
+<a href="#about">
+О проекте
 </a>
 
-<div class="menu">
+<a href="#gallery">
+Галерея
+</a>
 
-<a href="#about">О проекте</a>
+<a href="#news">
+Новости
+</a>
 
-<a href="#features">Возможности</a>
-
-<a href="#news">Новости</a>
-
-<a href="#download">Скачать</a>
+<a href="#download">
+Скачать
+</a>
 
 </div>
 
 <a
 href="https://t.me/marsianinstudio"
 target="_blank"
-class="telegram-small"
+class="nav-telegram"
 >
 Telegram ↗
 </a>
@@ -684,88 +787,52 @@ Telegram ↗
 
 
 
-<!-- ГЛАВНЫЙ ЭКРАН -->
+<!-- HERO -->
 
 <section class="hero">
 
-<div class="container hero-grid">
+<div class="hero-content reveal">
 
-
-<div class="reveal">
-
-<div class="badge">
-● НОВЫЙ CRMP-ПРОЕКТ
+<div class="hero-small">
+CRMP ROLEPLAY • MARSIANIN STUDIO
 </div>
-
 
 <h1>
 
-MARSIANIN
+ТВОЯ
 
 <br>
 
-<span class="gradient">
-STUDIO
-</span>
+<span>ИСТОРИЯ.</span>
 
 </h1>
 
+<p class="hero-description">
 
-<p class="hero-text">
-
-Добро пожаловать в новый мир CRMP.
-Уникальный проект, собственная атмосфера
-и множество возможностей для игры.
+Погрузись в большой игровой мир,
+создай своего персонажа,
+выбирай свой путь и начинай собственную историю.
 
 </p>
-
 
 <div class="buttons">
 
 <a
 href="#download"
-class="btn download"
+class="button button-download"
 >
-⬇ Скачать игру
+⬇ СКАЧАТЬ ИГРУ
 </a>
-
 
 <a
 href="https://t.me/marsianinstudio"
 target="_blank"
-class="btn telegram"
+class="button button-telegram"
 >
-✈ Telegram
+✈ TELEGRAM
 </a>
 
 </div>
-
-</div>
-
-
-
-<!-- ПРАВАЯ КАРТОЧКА -->
-
-<div class="game-card reveal">
-
-<div class="card-content">
-
-<div class="card-logo">
-
-M<span>S</span>
-
-</div>
-
-<div class="card-info">
-
-CRMP • MARSIANIN STUDIO
-
-</div>
-
-</div>
-
-</div>
-
 
 </div>
 
@@ -773,48 +840,78 @@ CRMP • MARSIANIN STUDIO
 
 
 
-<!-- О ПРОЕКТЕ -->
+<!-- ABOUT -->
 
 <section id="about">
 
 <div class="container">
 
-
 <div class="reveal">
 
-<div class="badge">
+<div class="section-label">
 О ПРОЕКТЕ
 </div>
 
-
 <h2 class="section-title">
-
-Создано для настоящей игры
-
+БОЛЬШЕ, ЧЕМ ПРОСТО ИГРА
 </h2>
 
+<p class="section-text">
 
-<p class="section-description">
-
-MARSIANIN STUDIO — игровой CRMP-проект
-со своей атмосферой, механиками и сообществом.
+MARSIANIN STUDIO — современный CRMP-проект,
+созданный для тех, кто хочет погрузиться
+в атмосферу большого виртуального мира.
 
 </p>
 
 </div>
 
 
-
-<div
-class="cards"
-id="features"
->
+<div class="features">
 
 
-<div class="card reveal">
+<div class="feature reveal">
 
-<div class="icon">
-🚗
+<div class="feature-icon">
+🚘
+</div>
+
+<h3>
+Большой автопарк
+</h3>
+
+<p>
+Различные автомобили, транспорт
+и возможности для развития персонажа.
+</p>
+
+</div>
+
+
+
+<div class="feature reveal">
+
+<div class="feature-icon">
+👥
+</div>
+
+<h3>
+Игровое сообщество
+</h3>
+
+<p>
+Общайся с игроками, создавай свою историю
+и находи новых друзей.
+</p>
+
+</div>
+
+
+
+<div class="feature reveal">
+
+<div class="feature-icon">
+🏙️
 </div>
 
 <h3>
@@ -822,46 +919,8 @@ id="features"
 </h3>
 
 <p>
-Исследуй игровой мир, выполняй задания
-и создавай собственную историю.
-</p>
-
-</div>
-
-
-
-<div class="card reveal">
-
-<div class="icon">
-👥
-</div>
-
-<h3>
-Живое сообщество
-</h3>
-
-<p>
-Общайся с игроками, вступай в организации
-и развивай своего персонажа.
-</p>
-
-</div>
-
-
-
-<div class="card reveal">
-
-<div class="icon">
-⚡
-</div>
-
-<h3>
-Своя атмосфера
-</h3>
-
-<p>
-Уникальные механики, оформление
-и контент MARSIANIN STUDIO.
+Исследуй город, работай, развивайся
+и выбирай собственный путь.
 </p>
 
 </div>
@@ -875,93 +934,216 @@ id="features"
 
 
 
-<!-- НОВОСТИ -->
+<!-- GALLERY -->
+
+<section id="gallery">
+
+<div class="container">
+
+<div class="reveal">
+
+<div class="section-label">
+ИГРОВОЙ МИР
+</div>
+
+<h2 class="section-title">
+ПОСМОТРИ НА АТМОСФЕРУ
+</h2>
+
+<p class="section-text">
+Несколько игровых кадров для атмосферы проекта.
+</p>
+
+</div>
+
+
+<div class="gallery">
+
+
+<div class="gallery-item big reveal">
+
+<img
+src="https://image.aiting.com/s1/17/e2/56f9cef251dd832ecde48d4c390412c3.webp"
+alt="CRMP gameplay"
+>
+
+<div class="gallery-overlay">
+
+<span>
+ГОРОД • АВТОМОБИЛИ • ИГРА
+</span>
+
+</div>
+
+</div>
+
+
+<div class="gallery-column">
+
+
+<div class="gallery-item reveal">
+
+<img
+src="https://fons.grizly.club/uploads/posts/2025-06/26/17509193917946.jpg"
+alt="CRMP winter gameplay"
+>
+
+<div class="gallery-overlay">
+
+<span>
+ЗИМНИЙ ГОРОД
+</span>
+
+</div>
+
+</div>
+
+
+<div class="gallery-item reveal">
+
+<img
+src="https://i.postimg.cc/ZKmf2S7b/IMG-2307.png"
+alt="CRMP gameplay"
+>
+
+<div class="gallery-overlay">
+
+<span>
+ИГРОВОЙ МИР
+</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- NEWS -->
 
 <section id="news">
 
 <div class="container">
 
-
 <div class="reveal">
 
-<div class="badge">
+<div class="section-label">
 НОВОСТИ
 </div>
 
-
 <h2 class="section-title">
-
-Последние новости
-
+ПОСЛЕДНИЕ СОБЫТИЯ
 </h2>
 
-
-<p class="section-description">
-
-Все важные новости проекта публикуются
-в официальном Telegram-канале.
-
+<p class="section-text">
+Следи за новостями проекта в Telegram.
 </p>
 
 </div>
 
 
+<div class="news">
 
-<div class="cards">
 
+<div class="news-card reveal">
 
-<div class="card news-card reveal">
+<div class="news-image">
 
-<div class="icon">
-🚀
+<img
+src="https://fons.grizly.club/uploads/posts/2025-06/26/17509193917946.jpg"
+alt=""
+>
+
+</div>
+
+<div class="news-content">
+
+<div class="news-date">
+MARSIANIN STUDIO
 </div>
 
 <h3>
-Скоро открытие
+СКОРО ОТКРЫТИЕ
 </h3>
 
 <p>
-Следи за Telegram, чтобы первым узнать
-дату запуска проекта.
+Следи за Telegram-каналом,
+чтобы не пропустить запуск проекта.
 </p>
+
+</div>
 
 </div>
 
 
 
-<div class="card news-card reveal">
+<div class="news-card reveal">
 
-<div class="icon">
-🛠️
+<div class="news-image">
+
+<img
+src="https://image.aiting.com/s1/17/e2/56f9cef251dd832ecde48d4c390412c3.webp"
+alt=""
+>
+
+</div>
+
+<div class="news-content">
+
+<div class="news-date">
+РАЗРАБОТКА
 </div>
 
 <h3>
-Разработка
+ПРОЕКТ РАЗВИВАЕТСЯ
 </h3>
 
 <p>
-Проект находится в разработке.
-Новые возможности появятся совсем скоро.
+Новые функции, механики и возможности
+будут появляться постепенно.
 </p>
+
+</div>
 
 </div>
 
 
 
-<div class="card news-card reveal">
+<div class="news-card reveal">
 
-<div class="icon">
-📢
+<div class="news-image">
+
+<img
+src="https://i.postimg.cc/ZKmf2S7b/IMG-2307.png"
+alt=""
+>
+
+</div>
+
+<div class="news-content">
+
+<div class="news-date">
+TELEGRAM
 </div>
 
 <h3>
-Наш Telegram
+СЛЕДИ ЗА НОВОСТЯМИ
 </h3>
 
 <p>
-Новости, обновления и объявления
-публикуются в нашем канале.
+Все важные объявления публикуются
+в официальном Telegram.
 </p>
+
+</div>
 
 </div>
 
@@ -974,7 +1156,7 @@ id="features"
 
 
 
-<!-- СКАЧИВАНИЕ -->
+<!-- DOWNLOAD -->
 
 <section
 id="download"
@@ -987,50 +1169,48 @@ class="download-section"
 <div class="download-box reveal">
 
 
-<div class="badge">
-ДОСТУП К ИГРЕ
+<div class="download-content">
+
+<div class="section-label">
+MARSIANIN STUDIO
 </div>
 
-
 <h2>
-Готов начать?
+НАЧНИ ИГРУ
 </h2>
-
 
 <p>
 
-Ссылка на скачивание пока не добавлена.
-После загрузки игры мы заменим эту кнопку
-на настоящую ссылку.
+Скачай игру и присоединяйся
+к игровому миру MARSIANIN STUDIO.
+
+Ссылка на игру пока находится
+в разработке.
 
 </p>
 
 
-<div class="buttons"
-style="justify-content:center"
->
+<div class="buttons">
 
-
-<!-- ПОКА НЕ РАБОТАЕТ -->
 
 <a
 href="#"
-class="btn download"
+class="button button-download"
 onclick="
-alert('Ссылка на игру пока не добавлена!');
+alert('Ссылка на скачивание пока не добавлена!');
 return false;
 "
 >
-⬇ Скачать игру
+⬇ СКАЧАТЬ ИГРУ
 </a>
 
 
 <a
 href="https://t.me/marsianinstudio"
 target="_blank"
-class="btn telegram"
+class="button button-telegram"
 >
-✈ Telegram
+✈ TELEGRAM
 </a>
 
 
@@ -1038,9 +1218,8 @@ class="btn telegram"
 
 </div>
 
+</div>
 
-
-<!-- ШАГИ -->
 
 <div class="steps">
 
@@ -1056,8 +1235,8 @@ class="btn telegram"
 </h3>
 
 <p>
-Следи за новостями проекта
-и датой запуска.
+Узнавай первым о новостях,
+обновлениях и запуске.
 </p>
 
 </div>
@@ -1090,12 +1269,12 @@ class="btn telegram"
 </div>
 
 <h3>
-Заходи в игру
+Начни играть
 </h3>
 
 <p>
-Создавай персонажа
-и начинай свою историю.
+Создай персонажа и начинай
+свою собственную историю.
 </p>
 
 </div>
@@ -1119,7 +1298,6 @@ class="btn telegram"
 © 2026 MARSIANIN STUDIO
 </div>
 
-
 <a
 href="https://t.me/marsianinstudio"
 target="_blank"
@@ -1133,24 +1311,21 @@ Telegram ↗
 
 
 
-<!-- JAVASCRIPT -->
-
 <script>
 
 const elements =
 document.querySelectorAll(".reveal");
 
-
 const observer =
 new IntersectionObserver(
 
-(entries) => {
+(entries)=>{
 
 entries.forEach(
 
-(entry) => {
+(entry)=>{
 
-if(entry.isIntersecting) {
+if(entry.isIntersecting){
 
 entry.target.classList.add("show");
 
@@ -1163,14 +1338,13 @@ entry.target.classList.add("show");
 },
 
 {
-threshold: 0.12
+threshold:.12
 }
 
 );
 
-
 elements.forEach(
-(element) =>
+element =>
 observer.observe(element)
 );
 
